@@ -1,0 +1,97 @@
+.page {
+  display: flex;
+  height: 100vh;
+  padding: 20px; /* было 40px */
+}
+
+/* RIGHT SIDE */
+
+.card {
+  width: 360px; /* было 400px */
+  padding: 22px; /* было 30px */
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
+}
+
+.card h2 {
+  margin-bottom: 6px;
+  font-size: 20px; /* компактнее */
+}
+
+.subtitle {
+  font-size: 13px;
+  margin-bottom: 16px; /* было 20px */
+}
+
+/* labels */
+
+form label {
+  margin-top: 10px; /* было 14px */
+  margin-bottom: 4px; /* было 6px */
+  font-size: 13px;
+}
+
+/* inputs */
+
+input {
+  padding: 8px; /* было 10px */
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* role */
+
+.role {
+  margin-top: 14px;
+}
+
+.role span {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.role-buttons button {
+  padding: 6px; /* было 8px */
+  font-size: 13px;
+}
+
+/* checkbox */
+
+.checkbox {
+  margin-top: 14px;
+  gap: 6px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 14px; /* уменьшили */
+  height: 14px;
+  cursor: pointer;
+}
+
+/* submit */
+
+.submit-btn {
+  margin-top: 16px;
+  padding: 10px; /* было 12px */
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* footer text */
+
+.login {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.social {
+  margin-top: 10px;
+}
+
+.social button {
+  padding: 6px;
+  font-size: 13px;
+}

@@ -1,0 +1,124 @@
+/* src/components/HomePage.css */
+.home-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  background: #f9f9fb;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #ff8fa3, #ff758f);
+  padding: 30px 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* фиксируем сайдбар */
+  height: 100vh; /* на всю высоту экрана */
+  overflow-y: auto; /* если контента много - будет скролл внутри сайдбара */
+}
+
+.brand {
+  margin-bottom: 40px;
+}
+
+.brand-logo {
+  max-width: 60px;
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 12px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== FEED ===== */
+.feed {
+  flex: 1;
+  padding: 30px 40px;
+  display: flex;
+  margin-left: 260px;
+  flex-direction: column;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.feed-header h1 {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1;
+}
+
+
+.register-button {
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #ff8fa3, #ff758f);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.2s;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.register-button:hover {
+  background: linear-gradient(180deg, #ff758f, #ff5f7c); /* более темный градиент */
+  transform: translateY(2px);
+  box-shadow: 0 5px 15px rgba(255, 117, 143, 0.3);
+  color: white; /* текст остается белым */
+}
+
+
+.post {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+}
+
+.post:hover {
+  transform: translateY(-3px);
+}
+
+.post h3 {
+  margin: 0 0 10px 0;
+  font-size: 22px;
+  color: #000;
+}
+
+.post p {
+  margin: 0;
+  font-size: 15px;
+  color: #222;
+  line-height: 1.5;
+}
