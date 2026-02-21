@@ -4,6 +4,7 @@ import logo from "./assets/logo.jpg";
 import Post from "./Post";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FiSettings } from "react-icons/fi";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const [activeMenuItem, setActiveMenuItem] = useState("Лента");
+  const [activeMenuItem, setActiveMenuItem] = useState("Главная");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -108,8 +109,8 @@ export default function HomePage() {
             </li>
           </ul>
         </nav>
-        <div className="settings-icon" onClick={() => navigate("/settings")}>
-          ⚙️
+        <div className="settings-icon">
+          <FiSettings className="settings-svg" />
         </div>
       </aside>
 

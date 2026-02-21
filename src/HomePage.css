@@ -19,18 +19,22 @@
   overflow-y: auto;
 }
 .settings-icon {
-  margin-top: auto; /* Прижимает вниз */
-  font-size: 24px;
+  margin-top: auto;
+  padding: 20px;
   cursor: pointer;
-  padding: 15px;
-  text-align: left;
-  border-radius: 10px;
-  transition: 0.3s;
-  width: fit-content;
+  display: flex;
+  justify-content: left;
 }
 
-.settings-icon:hover {
-  background: rgba(255, 255, 255, 0.2);
+.settings-svg {
+  font-size: 32px; /* размер */
+  color: white; /* цвет */
+  transition: 0.3s;
+}
+
+.settings-icon:hover .settings-svg {
+  transform: rotate(90deg);
+  color: #ffe4ec;
 }
 
 .brand {
@@ -42,6 +46,7 @@
   max-width: 150px;
   height: auto;
   display: block;
+  margin-bottom: 10px;
 }
 
 .sidebar ul {
@@ -50,19 +55,48 @@
   margin: 0;
 }
 
+.sidebar ul {
+  margin-top: 20px;
+}
+
 .sidebar li {
-  padding: 12px 10px;
-  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.25s ease;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
 }
 
 .sidebar li:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transform: translateX(4px);
 }
 
-.sidebar .active {
-  background: rgba(255, 255, 255, 0.3);
+/* АКТИВНЫЙ РАЗДЕЛ */
+.sidebar li.active {
+  background: white;
+  color: #ff758f;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ЛЕВЫЙ ИНДИКАТОР */
+.sidebar li.active::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 60%;
+  background: white;
+  border-radius: 4px;
 }
 
 /* ===== FEED ===== */
@@ -89,14 +123,14 @@
 }
 
 .register-button {
-  padding: 10px 20px;
+  padding: 14px 24px;
   background: linear-gradient(180deg, #ff8fa3, #ff758f);
   color: white;
   text-decoration: none;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
+  font-weight: 600;
+  transition: 0.3s ease;
   border: none;
   cursor: pointer;
   display: inline-block;

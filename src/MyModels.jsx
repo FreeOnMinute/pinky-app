@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "./assets/logo.jpg";
 import ModelCard from "./ModelCard";
 import "./MyModels.css";
+import { FiSettings } from "react-icons/fi";
 
 export default function MyModels() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function MyModels() {
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const [activeMenuItem, setActiveMenuItem] = useState("Мои модели");
+  const [activeMenuItem, setActiveMenuItem] = useState("Топ Моделей");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -115,13 +116,19 @@ export default function MyModels() {
             </li>
           </ul>
         </nav>
+        <div className="settings-icon">
+          <FiSettings className="settings-svg" />
+        </div>
       </aside>
 
       <main className="feed">
         <div className="feed-header">
           <h1>Топ Моделей</h1>
-        </div>
 
+          <Link to="/register" className="register-button">
+            Регистрация
+          </Link>
+        </div>
         <div className="models-grid">
           {models.map((model) => (
             <ModelCard key={model.id} title={model.title} image={model.url} />

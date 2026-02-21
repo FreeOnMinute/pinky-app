@@ -71,3 +71,22 @@
     gap: 20px;
   }
 }
+
+.settings-icon {
+  margin-top: auto;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: left;
+}
+
+.settings-svg {
+  font-size: 32px; /* размер */
+  color: white; /* цвет */
+  transition: 0.3s;
+}
+
+.settings-icon:hover .settings-svg {
+  transform: rotate(90deg);
+  color: #ffe4ec;
+}

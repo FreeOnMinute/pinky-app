@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "./RegisterForm.css";
 import logo from "./assets/logo.jpg";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function RegisterForm() {
   const [role, setRole] = useState("creator");
@@ -107,9 +110,15 @@ export default function RegisterForm() {
               <div className="social">
                 <p>или войти через</p>
                 <div className="social-buttons">
-                  <button type="button">Google</button>
-                  <button type="button">GitHub</button>
-                  <button type="button">Twitter</button>
+                  <button type="button" className="social-btn google">
+                    <FcGoogle size={20} />
+                    <span>Google</span>
+                  </button>
+
+                  <button type="button" className="social-btn apple">
+                    <FaApple size={20} />
+                    <span>Apple</span>
+                  </button>
                 </div>
               </div>
             </form>

@@ -13,7 +13,7 @@ body {
 
 .layout {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   font-family: "Inter", sans-serif;
 }
 
@@ -62,6 +62,12 @@ p {
   justify-content: center;
 }
 
+.form-subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 25px;
+}
+
 /* ===== КАРТОЧКА ФОРМЫ ===== */
 .form-container {
   width: 100%;
@@ -82,9 +88,12 @@ p {
 }
 
 .form-card h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #ff8fa3, #ff5f7c);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .subtitle {
@@ -95,57 +104,64 @@ p {
 /* ===== ПОЛЯ ===== */
 label {
   display: block;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   margin-bottom: 6px;
-  margin-top: 18px;
+  margin-top: 20px;
+  color: #555;
+  letter-spacing: 0.3px;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: 0.2s ease;
-  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  background: #fdfdfd;
 }
 
 input:focus {
   outline: none;
   border-color: #ff8fa3;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(255, 143, 163, 0.2);
+  box-shadow: 0 6px 18px rgba(255, 143, 163, 0.15);
 }
 
 /* ===== РОЛИ ===== */
 .role-buttons {
   display: flex;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .role-buttons button {
   flex: 1;
-  padding: 10px;
+  padding: 14px 12px;
   font-size: 14px;
-  font-weight: 500;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  background: #ffffff;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all 0.25s ease;
+  position: relative;
 }
 
 .role-buttons button:hover {
-  background: #ececec;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* АКТИВНАЯ РОЛЬ */
 .role-buttons .active {
-  border: 2px solid #ff8fa3;
-  background: #ffe5e8;
+  background: linear-gradient(135deg, #ff8fa3, #ff758f);
+  color: white;
+  border: none;
+  box-shadow: 0 10px 25px rgba(255, 117, 143, 0.35);
 }
 
 /* ===== ЧЕКБОКС ===== */
@@ -201,34 +217,77 @@ input:focus {
   text-decoration: underline;
 }
 
-/* ===== СОЦКНОПКИ ===== */
+/* ===== СОЦИАЛЬНЫЕ КНОПКИ ===== */
+
 .social {
-  margin-top: 25px;
+  margin-top: 15px;
   text-align: center;
 }
 
 .social p {
   font-size: 13px;
-  color: #777;
+  color: #999;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .social-buttons {
   display: flex;
+  flex-direction: column;
   gap: 12px;
-  margin-top: 12px;
 }
 
-.social-buttons button {
-  flex: 1;
-  padding: 9px;
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  padding: 12px;
+
   font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  background: #f5f5f5;
+  font-weight: 500;
+
+  border-radius: 10px;
+  border: none;
+
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all 0.25s ease;
 }
 
-.social-buttons button:hover {
-  background: #ececec;
+/* GOOGLE */
+.social-btn.google {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+}
+
+.social-btn.google:hover {
+  background: #f7f7f7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* APPLE */
+.social-btn.apple {
+  background: #000000;
+  color: white;
+}
+
+.social-btn.apple:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* TWITTER (X) */
+.social-btn.twitter {
+  background: #111;
+  color: white;
+}
+
+.social-btn.twitter:hover {
+  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }

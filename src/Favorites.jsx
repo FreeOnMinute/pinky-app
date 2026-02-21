@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "./assets/logo.jpg";
 import FavoriteCard from "./FavoriteCard";
 import "./Favorites.css";
+import { FiSettings } from "react-icons/fi";
 
 export default function Favorites() {
   const navigate = useNavigate();
@@ -115,11 +116,17 @@ export default function Favorites() {
             </li>
           </ul>
         </nav>
+        <div className="settings-icon">
+          <FiSettings className="settings-svg" />
+        </div>
       </aside>
 
       <main className="feed">
         <div className="feed-header">
           <h1>Избранное</h1>
+          <Link to="/register" className="register-button">
+            Регистрация
+          </Link>
         </div>
 
         <div className="favorites-grid">
