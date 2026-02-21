@@ -18,6 +18,20 @@
   height: 100vh;
   overflow-y: auto;
 }
+.settings-icon {
+  margin-top: auto; /* Прижимает вниз */
+  font-size: 24px;
+  cursor: pointer;
+  padding: 15px;
+  text-align: left;
+  border-radius: 10px;
+  transition: 0.3s;
+  width: fit-content;
+}
+
+.settings-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
 .brand {
   margin-bottom: 40px;
@@ -115,7 +129,7 @@
 }
 
 .post::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -139,7 +153,7 @@
 }
 
 .post h3::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -169,13 +183,17 @@
 
 /* Добавляем розовый градиентный фон при наведении */
 .post::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   right: 0;
   width: 100px;
   height: 100px;
-  background: radial-gradient(circle at bottom right, rgba(255, 143, 163, 0.1), transparent 70%);
+  background: radial-gradient(
+    circle at bottom right,
+    rgba(255, 143, 163, 0.1),
+    transparent 70%
+  );
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -206,8 +224,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Сообщение о конце списка */
@@ -226,7 +248,7 @@
 
 .end-message p::before,
 .end-message p::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   width: 30px;
@@ -248,20 +270,20 @@
     margin-left: 0;
     padding: 20px;
   }
-  
+
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.3s;
   }
-  
+
   .sidebar.open {
     transform: translateX(0);
   }
-  
+
   .post h3 {
     font-size: 20px;
   }
-  
+
   .post p {
     font-size: 14px;
   }

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import logo from './assets/logo.jpg';
-import FavoriteCard from './FavoriteCard';
-import './Favorites.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import logo from "./assets/logo.jpg";
+import FavoriteCard from "./FavoriteCard";
+import "./Favorites.css";
 
 export default function Favorites() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Favorites() {
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const [activeMenuItem, setActiveMenuItem] = useState('Избранное');
+  const [activeMenuItem, setActiveMenuItem] = useState("Избранное");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,26 +19,29 @@ export default function Favorites() {
 
   useEffect(() => {
     if (fetching) {
-      console.log('Загрузка страницы:', currentPage);
-      
-      axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=6&_page=${currentPage}`)
-      .then(response => {
-        setFavorites([...favorites, ...response.data]);
-        setCurrentPage(prevPage => prevPage + 1);
-        setTotalCount(response.headers['x-total-count']);
-      })
-      .catch(error => {
-        console.error('Ошибка загрузки:', error);
-      })
-      .finally(() => setFetching(false));
+      console.log("Загрузка страницы:", currentPage);
+
+      axios
+        .get(
+          `https://jsonplaceholder.typicode.com/photos?_limit=6&_page=${currentPage}`,
+        )
+        .then((response) => {
+          setFavorites([...favorites, ...response.data]);
+          setCurrentPage((prevPage) => prevPage + 1);
+          setTotalCount(response.headers["x-total-count"]);
+        })
+        .catch((error) => {
+          console.error("Ошибка загрузки:", error);
+        })
+        .finally(() => setFetching(false));
     }
   }, [fetching]);
 
   useEffect(() => {
-    document.addEventListener('scroll', scrollHandler);
-    
+    document.addEventListener("scroll", scrollHandler);
+
     return () => {
-      document.removeEventListener('scroll', scrollHandler);
+      document.removeEventListener("scroll", scrollHandler);
     };
   }, [favorites.length, totalCount]);
 
@@ -46,29 +49,31 @@ export default function Favorites() {
     const scrollHeight = e.target.documentElement.scrollHeight;
     const scrollTop = e.target.documentElement.scrollTop;
     const innerHeight = window.innerHeight;
-    
-    if (scrollHeight - (scrollTop + innerHeight) < 200 
-        && favorites.length < totalCount
-        && !fetching) {
-      console.log('Загружаем ещё...');
+
+    if (
+      scrollHeight - (scrollTop + innerHeight) < 200 &&
+      favorites.length < totalCount &&
+      !fetching
+    ) {
+      console.log("Загружаем ещё...");
       setFetching(true);
     }
   };
 
   const handleMenuItemClick = (item) => {
     setActiveMenuItem(item);
-    switch(item) {
-      case 'Лента':
-        navigate('/');
+    switch (item) {
+      case "Главная":
+        navigate("/");
         break;
-      case 'Мои модели':
-        navigate('/my-models');
+      case "Топ Моделей":
+        navigate("/my-models");
         break;
-      case 'Избранное':
-        navigate('/favorites');
+      case "Избранное":
+        navigate("/favorites");
         break;
-      case 'Профиль':
-        navigate('/profile');
+      case "Мой Профиль":
+        navigate("/profile");
         break;
       default:
         break;
@@ -84,29 +89,29 @@ export default function Favorites() {
 
         <nav>
           <ul>
-            <li 
-              className={activeMenuItem === 'Лента' ? 'active' : ''}
-              onClick={() => handleMenuItemClick('Лента')}
+            <li
+              className={activeMenuItem === "Главная" ? "active" : ""}
+              onClick={() => handleMenuItemClick("Главная")}
             >
-              Лента
+              Главная
             </li>
-            <li 
-              className={activeMenuItem === 'Мои модели' ? 'active' : ''}
-              onClick={() => handleMenuItemClick('Мои модели')}
+            <li
+              className={activeMenuItem === "Топ Моделей" ? "active" : ""}
+              onClick={() => handleMenuItemClick("Топ Моделей")}
             >
-              Мои модели
+              Топ Моделей
             </li>
-            <li 
-              className={activeMenuItem === 'Избранное' ? 'active' : ''}
-              onClick={() => handleMenuItemClick('Избранное')}
+            <li
+              className={activeMenuItem === "Избранное" ? "active" : ""}
+              onClick={() => handleMenuItemClick("Избранное")}
             >
               Избранное
             </li>
-            <li 
-              className={activeMenuItem === 'Профиль' ? 'active' : ''}
-              onClick={() => handleMenuItemClick('Профиль')}
+            <li
+              className={activeMenuItem === "Мой Профиль" ? "active" : ""}
+              onClick={() => handleMenuItemClick("Мой Профиль")}
             >
-              Профиль
+              Мой Профиль
             </li>
           </ul>
         </nav>
@@ -116,24 +121,20 @@ export default function Favorites() {
         <div className="feed-header">
           <h1>Избранное</h1>
         </div>
-        
+
         <div className="favorites-grid">
-          {favorites.map(item => (
-            <FavoriteCard 
-              key={item.id}
-              title={item.title}
-              image={item.url}
-            />
+          {favorites.map((item) => (
+            <FavoriteCard key={item.id} title={item.title} image={item.url} />
           ))}
         </div>
-        
+
         {fetching && (
           <div className="loading-indicator">
             <div className="spinner"></div>
             <p>Загрузка избранного...</p>
           </div>
         )}
-        
+
         {favorites.length >= totalCount && favorites.length > 0 && (
           <div className="end-message">
             <p>Вы просмотрели все избранное</p>

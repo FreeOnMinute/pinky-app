@@ -1,9 +1,9 @@
 // App.js
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './HomePage.jsx';
-import RegistrationForm from './RegisterForm.jsx';
-import MyModels from './MyModels.jsx';
-import Favorites from './Favorites.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage.jsx";
+import RegistrationForm from "./RegisterForm.jsx";
+import MyModels from "./MyModels.jsx";
+import Favorites from "./Favorites.jsx";
 
 function App() {
   return (
@@ -19,23 +19,3 @@ function App() {
 }
 
 export default App;
-/*
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import MyModels from './pages/MyModels';
-// import Favorites from './pages/Favorites';
-// import Profile from './pages/Profile';
-// import Register from './components/Register';
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;*/
