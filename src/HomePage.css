@@ -14,9 +14,9 @@
   color: white;
   display: flex;
   flex-direction: column;
-  position: fixed; /* фиксируем сайдбар */
-  height: 100vh; /* на всю высоту экрана */
-  overflow-y: auto; /* если контента много - будет скролл внутри сайдбара */
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .brand {
@@ -74,7 +74,6 @@
   line-height: 1;
 }
 
-
 .register-button {
   padding: 10px 20px;
   background: linear-gradient(180deg, #ff8fa3, #ff758f);
@@ -90,35 +89,180 @@
 }
 
 .register-button:hover {
-  background: linear-gradient(180deg, #ff758f, #ff5f7c); /* более темный градиент */
+  background: linear-gradient(180deg, #ff758f, #ff5f7c);
   transform: translateY(2px);
   box-shadow: 0 5px 15px rgba(255, 117, 143, 0.3);
-  color: white; /* текст остается белым */
+  color: white;
 }
 
-
+/* ===== POSTS ===== */
 .post {
   background: white;
   padding: 20px;
   border-radius: 14px;
   margin-bottom: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  transition: 0.2s;
+  transition: 0.3s;
+  border: 1px solid #ffe4e9;
+  position: relative;
+  overflow: hidden;
 }
 
 .post:hover {
   transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(255, 143, 163, 0.2);
+  border-color: #ff8fa3;
+}
+
+.post::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff8fa3, #ff758f, #ff5f7c);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.post:hover::before {
+  opacity: 1;
 }
 
 .post h3 {
   margin: 0 0 10px 0;
   font-size: 22px;
-  color: #000;
+  color: #333;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.post h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #ff8fa3;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.post:hover h3::after {
+  width: 60px;
+  background: linear-gradient(90deg, #ff8fa3, #ff758f);
 }
 
 .post p {
   margin: 0;
   font-size: 15px;
-  color: #222;
+  color: #444;
   line-height: 1.5;
+  transition: color 0.3s;
+}
+
+.post:hover p {
+  color: #222;
+}
+
+/* Добавляем розовый градиентный фон при наведении */
+.post::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at bottom right, rgba(255, 143, 163, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.post:hover::after {
+  opacity: 1;
+}
+
+/* Индикатор загрузки для ленты */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #ff8fa3;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ffe4e9;
+  border-top: 4px solid #ff8fa3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Сообщение о конце списка */
+.end-message {
+  text-align: center;
+  padding: 30px;
+  color: #999;
+  font-size: 16px;
+}
+
+.end-message p {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.end-message p::before,
+.end-message p::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff8fa3, transparent);
+}
+
+.end-message p::before {
+  left: -40px;
+}
+
+.end-message p::after {
+  right: -40px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .feed {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .post h3 {
+    font-size: 20px;
+  }
+  
+  .post p {
+    font-size: 14px;
+  }
 }

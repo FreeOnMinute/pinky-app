@@ -1,51 +1,59 @@
-// src/components/HomePage.jsx
-import "./HomePage.css";
-import { Link, useNavigate } from 'react-router-dom';
-import logo from './assets/logo.jpg';
-import Post from './Post';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import logo from './assets/logo.jpg';
+import FavoriteCard from './FavoriteCard';
+import './Favorites.css';
 
-export default function HomePage() {
+export default function Favorites() {
   const navigate = useNavigate();
-  const [photos, setPhotos] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const [activeMenuItem, setActiveMenuItem] = useState('Лента');
+  const [activeMenuItem, setActiveMenuItem] = useState('Избранное');
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   useEffect(() => {
     if (fetching) {
-      console.log(currentPage)
-      axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=10&_page=${currentPage}`)
+      console.log('Загрузка страницы:', currentPage);
+      
+      axios.get(`https://jsonplaceholder.typicode.com/photos?_limit=6&_page=${currentPage}`)
       .then(response => {
-        setPhotos([...photos, ...response.data])
-        setCurrentPage(PrevState => PrevState + 1)
-        setTotalCount(response.headers['x-total-count'])
+        setFavorites([...favorites, ...response.data]);
+        setCurrentPage(prevPage => prevPage + 1);
+        setTotalCount(response.headers['x-total-count']);
+      })
+      .catch(error => {
+        console.error('Ошибка загрузки:', error);
       })
       .finally(() => setFetching(false));
-
-  }}, [fetching])
+    }
+  }, [fetching]);
 
   useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
+    document.addEventListener('scroll', scrollHandler);
     
-    return function () {
-      document.removeEventListener('scroll', scrollHandler)
+    return () => {
+      document.removeEventListener('scroll', scrollHandler);
     };
-  }, [])
+  }, [favorites.length, totalCount]);
 
   const scrollHandler = (e) => {
-    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100 
-    && photos.length <= totalCount) {
-      setFetching(true) 
-      console.log('fetching')
+    const scrollHeight = e.target.documentElement.scrollHeight;
+    const scrollTop = e.target.documentElement.scrollTop;
+    const innerHeight = window.innerHeight;
+    
+    if (scrollHeight - (scrollTop + innerHeight) < 200 
+        && favorites.length < totalCount
+        && !fetching) {
+      console.log('Загружаем ещё...');
+      setFetching(true);
     }
-  }
+  };
 
   const handleMenuItemClick = (item) => {
     setActiveMenuItem(item);
@@ -65,7 +73,7 @@ export default function HomePage() {
       default:
         break;
     }
-  }
+  };
 
   return (
     <div className="home-layout">
@@ -106,17 +114,31 @@ export default function HomePage() {
 
       <main className="feed">
         <div className="feed-header">
-          <h1>Лента моделей</h1>
-          <Link to="/register" className="register-button">Регистрация</Link>
+          <h1>Избранное</h1>
         </div>
-        {photos.map(post => (
-          <Post 
-            key={post.id}
-            title={post.title}
-            /*description={post.description}*/
-            /*image={post}*/
-          />
-        ))}
+        
+        <div className="favorites-grid">
+          {favorites.map(item => (
+            <FavoriteCard 
+              key={item.id}
+              title={item.title}
+              image={item.url}
+            />
+          ))}
+        </div>
+        
+        {fetching && (
+          <div className="loading-indicator">
+            <div className="spinner"></div>
+            <p>Загрузка избранного...</p>
+          </div>
+        )}
+        
+        {favorites.length >= totalCount && favorites.length > 0 && (
+          <div className="end-message">
+            <p>Вы просмотрели все избранное</p>
+          </div>
+        )}
       </main>
     </div>
   );

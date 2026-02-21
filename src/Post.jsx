@@ -7,7 +7,7 @@ export default function Post({ title, description, likes, date, image }) {
       
       {image && (
         <div className="post-image">
-          <img src={image } alt={title} />
+          <img src={image}/>
         </div>
       )}
       
